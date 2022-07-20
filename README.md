@@ -14,7 +14,7 @@
 
 - [ ] Insertion Sort
 
-<img src="https://user-images.githubusercontent.com/75206974/179926965-729d8f30-813d-476e-b7cc-618e473e2cb6.gif" width="1000" height="400">
+<img src="https://user-images.githubusercontent.com/75206974/179928465-8a806248-8785-4df3-8e11-e6f13667bd13.gif" width="1000" height="400">
 
 - [ ] Merge Sort
 
