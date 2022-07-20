@@ -82,7 +82,7 @@ void quickSort(std::vector<sf::RectangleShape> &rectangles, int p, int r, sf::Re
     }
 }
 
-void BubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed){
+void bubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed){
     for (int i = 0; i < rectangles.size() - 1; i++) {
         for (int j = 0; j < rectangles.size() - i - 1; j++) {
             if (rectangles[j].getSize().y > rectangles[j + 1].getSize().y) {
@@ -106,6 +106,30 @@ void selectionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow
 
         // put min at the correct position
         swap(min_idx, step, rectangles, window, speed);
+    }
+}
+
+void insertionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed){
+    sf::RectangleShape key;
+    int i, j;
+    for (i = 1; i < rectangles.size(); i++)
+    {
+        key = rectangles[i];
+        j = i - 1;
+        while (j >= 0 && rectangles[j].getSize().y > key.getSize().y)
+        {
+            rectangles[j + 1].setFillColor(sf::Color(255, 0, 0));
+            rectangles[j + 1].setSize(sf::Vector2f(rectangles[j].getSize()));
+            rectangles[j + 1].setPosition(sf::Vector2f(rectangles[j + 1].getPosition().x, windHeight - rectangles[j + 1].getSize().y));
+            render(window, rectangles, speed);
+            rectangles[j + 1].setFillColor(sf::Color(255, 255, 255));
+            j = j - 1;
+        }
+        rectangles[j + 1].setFillColor(sf::Color(255, 0, 0));
+        rectangles[j + 1].setSize(sf::Vector2f(key.getSize()));
+        rectangles[j + 1].setPosition(sf::Vector2f(rectangles[j + 1].getPosition().x, windHeight - rectangles[j + 1].getSize().y));
+        render(window, rectangles, speed);
+        rectangles[j + 1].setFillColor(sf::Color(255, 255, 255));
     }
 }
 
@@ -138,17 +162,21 @@ int main()
                 window.close();
         }
         if(!isSorted){
-            std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\n3. Selection Sort\nEnter the number > ";
+            std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\n"
+                         "3. Selection Sort\n4. Insertion Sort\nEnter the number > ";
             std::cin >> answer;
             switch(answer){
                 case 1:
-                    BubbleSort(rectangles, &window, 100);
+                    bubbleSort(rectangles, &window, 100);
                     break;
                 case 2:
                     quickSort(rectangles, 0, rectangles.size() - 1, &window, 10000);
                     break;
                 case 3:
                     selectionSort(rectangles, &window, 50000);
+                    break;
+                case 4:
+                    insertionSort(rectangles, &window, 1000);
                     break;
             }
             isSorted = true;
