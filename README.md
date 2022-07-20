@@ -12,7 +12,7 @@
 
 <img src="https://user-images.githubusercontent.com/75206974/179919298-c26b4563-990a-4b25-8c09-c65d555119ed.gif" width="1000" height="400">
 
-- [ ] Insertion Sort
+- [X] Insertion Sort
 
 <img src="https://user-images.githubusercontent.com/75206974/179928465-8a806248-8785-4df3-8e11-e6f13667bd13.gif" width="1000" height="400">
 
