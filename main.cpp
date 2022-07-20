@@ -53,8 +53,7 @@ void render(sf::RenderWindow *window, std::vector<sf::RectangleShape> &rectangle
     usleep(speed);
 }
 
-int partition (std::vector<sf::RectangleShape> &rectangles, int low, int high, sf::RenderWindow *window, int speed)
-{
+int partition (std::vector<sf::RectangleShape> &rectangles, int low, int high, sf::RenderWindow *window, int speed){
     sf::RectangleShape pivot = rectangles[high];// pivot
     int i = (low - 1);
 
@@ -94,6 +93,22 @@ void BubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *w
     }
 }
 
+void selectionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed) {
+    for (int step = 0; step < rectangles.size() - 1; step++) {
+        int min_idx = step;
+        for (int i = step + 1; i < rectangles.size(); i++) {
+
+            // To sort in descending order, change > to < in this line.
+            // Select the minimum element in each loop.
+            if (rectangles[i].getSize().y < rectangles[min_idx].getSize().y)
+                min_idx = i;
+        }
+
+        // put min at the correct position
+        swap(min_idx, step, rectangles, window, speed);
+    }
+}
+
 int main()
 {
     bool isSorted = false;
@@ -123,7 +138,7 @@ int main()
                 window.close();
         }
         if(!isSorted){
-            std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\nEnter the number > ";
+            std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\n3. Selection Sort\nEnter the number > ";
             std::cin >> answer;
             switch(answer){
                 case 1:
@@ -131,6 +146,9 @@ int main()
                     break;
                 case 2:
                     quickSort(rectangles, 0, rectangles.size() - 1, &window, 10000);
+                    break;
+                case 3:
+                    selectionSort(rectangles, &window, 50000);
                     break;
             }
             isSorted = true;
