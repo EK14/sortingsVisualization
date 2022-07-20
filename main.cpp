@@ -53,6 +53,9 @@ void render(sf::RenderWindow *window, std::vector<sf::RectangleShape> &rectangle
     usleep(speed);
 }
 
+//*********************************************************************************************************************
+//*************************************************Quick Sort**********************************************************
+
 int partition (std::vector<sf::RectangleShape> &rectangles, int low, int high, sf::RenderWindow *window, int speed){
     sf::RectangleShape pivot = rectangles[high];// pivot
     int i = (low - 1);
@@ -82,6 +85,9 @@ void quickSort(std::vector<sf::RectangleShape> &rectangles, int p, int r, sf::Re
     }
 }
 
+//*********************************************************************************************************************
+//*************************************************Bubble Sort*********************************************************
+
 void bubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed){
     for (int i = 0; i < rectangles.size() - 1; i++) {
         for (int j = 0; j < rectangles.size() - i - 1; j++) {
@@ -92,6 +98,9 @@ void bubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *w
         }
     }
 }
+
+//*********************************************************************************************************************
+//*************************************************Selection Sort******************************************************
 
 void selectionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed) {
     for (int step = 0; step < rectangles.size() - 1; step++) {
@@ -108,6 +117,9 @@ void selectionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow
         swap(min_idx, step, rectangles, window, speed);
     }
 }
+
+//*********************************************************************************************************************
+//*************************************************Insertion Sort******************************************************
 
 void insertionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed){
     sf::RectangleShape key;
@@ -132,6 +144,9 @@ void insertionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow
         rectangles[j + 1].setFillColor(sf::Color(255, 255, 255));
     }
 }
+
+//*********************************************************************************************************************
+//*************************************************Merge Sort**********************************************************
 
 void merge(std::vector<sf::RectangleShape> &rectangles, int const left, int const mid, int const right, sf::RenderWindow *window, int speed){
     auto const subArrayOne = mid - left + 1;
@@ -220,6 +235,57 @@ void mergeSort(std::vector<sf::RectangleShape> &rectangles, int const begin, int
     merge(rectangles, begin, mid, end, window, speed);
 }
 
+//*********************************************************************************************************************
+//*************************************************Heap Sort***********************************************************
+
+void heapify(std::vector<sf::RectangleShape> &rectangles, int n, int i, sf::RenderWindow *window, int speed){
+    // Initialize largest as root
+    int largest = i;
+
+    // left = 2*i + 1
+    int l = 2 * i + 1;
+
+    // right = 2*i + 2
+    int r = 2 * i + 2;
+
+    // If left child is larger than root
+    if (l < n && rectangles[l].getSize().y > rectangles[largest].getSize().y)
+        largest = l;
+
+    // If right child is larger than largest
+    // so far
+    if (r < n && rectangles[r].getSize().y > rectangles[largest].getSize().y)
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        swap(i, largest, rectangles, window, speed);
+
+        // Recursively heapify the affected
+        // sub-tree
+        heapify(rectangles, n, largest, window, speed);
+    }
+}
+
+// Main function to do heap sort
+void heapSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed){
+
+    // Build heap (rearrange array)
+    for (int i = rectangles.size() / 2 - 1; i >= 0; i--)
+        heapify(rectangles, rectangles.size(), i, window, speed);
+
+    // One by one extract an element
+    // from heap
+    for (int i = rectangles.size() - 1; i > 0; i--) {
+
+        // Move current root to end
+        swap(0, i, rectangles, window, speed);
+
+        // call max heapify on the reduced heap
+        heapify(rectangles, i, 0, window, speed);
+    }
+}
+
 int main()
 {
     bool isSorted = false;
@@ -250,7 +316,7 @@ int main()
         }
         if(!isSorted){
             std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\n"
-                         "3. Selection Sort\n4. Insertion Sort\n5. Merge Sort\nEnter the number > ";
+                         "3. Selection Sort\n4. Insertion Sort\n5. Merge Sort\n6. Heap Sort\nEnter the number > ";
             std::cin >> answer;
             switch(answer){
                 case 1:
@@ -267,6 +333,9 @@ int main()
                     break;
                 case 5:
                     mergeSort(rectangles, 0, rectangles.size() - 1, &window, 1000);
+                    break;
+                case 6:
+                    heapSort(rectangles, &window, 10000);
                     break;
             }
             isSorted = true;

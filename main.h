@@ -17,6 +17,8 @@ void bubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *w
 void insertionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed);
 void merge(std::vector<sf::RectangleShape> &rectangles, int const left, int const mid, int const right, sf::RenderWindow *window, int speed);
 void mergeSort(std::vector<sf::RectangleShape> &rectangles, int const begin, int const end, sf::RenderWindow *window, int speed);
+void heapify(std::vector<sf::RectangleShape> &rectangles, int n, int i, sf::RenderWindow *window, int speed);
+void heapSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed);
 
 
 
