@@ -11,3 +11,15 @@
 - [X] Selection Sort
 
 <img src="https://user-images.githubusercontent.com/75206974/179919298-c26b4563-990a-4b25-8c09-c65d555119ed.gif" width="1000" height="400">
+
+- [ ] Insertion Sort
+
+- [ ] Merge Sort
+
+- [ ] Heap Sort
+
+- [ ] Radix Sort
+
+- [ ] Shell Sort
+
+- [ ] Coctail Shaker Sort
