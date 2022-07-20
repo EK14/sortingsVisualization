@@ -14,6 +14,8 @@
 
 - [ ] Insertion Sort
 
+<img src="https://user-images.githubusercontent.com/75206974/179926965-729d8f30-813d-476e-b7cc-618e473e2cb6.gif" width="1000" height="400">
+
 - [ ] Merge Sort
 
 - [ ] Heap Sort
