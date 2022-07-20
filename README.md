@@ -1,3 +1,3 @@
 # sortingsVisualization
 
--[ ] Bubble Sort
+-[  ] Bubble Sort
