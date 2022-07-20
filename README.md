@@ -20,7 +20,9 @@
 
 <img src="https://user-images.githubusercontent.com/75206974/179981225-3203aaaf-2563-45c4-be72-61dbc0f19f74.gif" width="1000" height="400">
 
-- [ ] Heap Sort
+- [X] Heap Sort
+
+<img src="https://user-images.githubusercontent.com/75206974/179989528-0fa2457c-f518-4b22-9600-4daf33cc8b22.gif" width="1000" height="400">
 
 - [ ] Radix Sort
 
