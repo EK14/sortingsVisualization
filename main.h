@@ -15,6 +15,9 @@ int partition (std::vector<sf::RectangleShape> &rectangles, int low, int high, s
 void quickSort(std::vector<sf::RectangleShape> &rectangles, int p, int r, sf::RenderWindow *window, int speed);
 void bubbleSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed);
 void insertionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow *window, int speed);
+void merge(std::vector<sf::RectangleShape> &rectangles, int const left, int const mid, int const right, sf::RenderWindow *window, int speed);
+void mergeSort(std::vector<sf::RectangleShape> &rectangles, int const begin, int const end, sf::RenderWindow *window, int speed);
+
 
 
 #endif //SORTINGVISUAL_MAIN_H

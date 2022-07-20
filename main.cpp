@@ -133,6 +133,93 @@ void insertionSort(std::vector<sf::RectangleShape> &rectangles, sf::RenderWindow
     }
 }
 
+void merge(std::vector<sf::RectangleShape> &rectangles, int const left, int const mid, int const right, sf::RenderWindow *window, int speed){
+    auto const subArrayOne = mid - left + 1;
+    auto const subArrayTwo = right - mid;
+
+    // Create temp arrays
+    auto *leftArray = new sf::RectangleShape[subArrayOne], *rightArray = new sf::RectangleShape[subArrayTwo];
+
+    // Copy data to temp arrays leftArray[] and rightArray[]
+    for (auto i = 0; i < subArrayOne; i++){
+        leftArray[i].setFillColor(sf::Color(255, 0, 0));
+        leftArray[i].setSize(sf::Vector2f(rectangles[left + i].getSize()));
+        leftArray[i].setPosition(sf::Vector2f(leftArray[i].getPosition().x, windHeight - leftArray[i].getSize().y));
+        render(window, rectangles, speed);
+        leftArray[i].setFillColor(sf::Color(255, 255, 255));
+    }
+    for (auto j = 0; j < subArrayTwo; j++){
+        rightArray[j].setFillColor(sf::Color(255, 0, 0));
+        rightArray[j].setSize(sf::Vector2f(rectangles[mid + 1 + j].getSize()));
+        rightArray[j].setPosition(sf::Vector2f(rightArray[j].getPosition().x, windHeight - rightArray[j].getSize().y));
+        render(window, rectangles, speed);
+        rightArray[j].setFillColor(sf::Color(255, 255, 255));
+    }
+
+    auto indexOfSubArrayOne = 0, // Initial index of first sub-array
+    indexOfSubArrayTwo = 0; // Initial index of second sub-array
+    int indexOfMergedArray = left; // Initial index of merged array
+
+    // Merge the temp arrays back into array[left..right]
+    while (indexOfSubArrayOne < subArrayOne
+           && indexOfSubArrayTwo < subArrayTwo) {
+        if (leftArray[indexOfSubArrayOne].getSize().y <= rightArray[indexOfSubArrayTwo].getSize().y) {
+            rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 0, 0));
+            rectangles[indexOfMergedArray].setSize(sf::Vector2f(leftArray[indexOfSubArrayOne].getSize()));
+            rectangles[indexOfMergedArray].setPosition(sf::Vector2f(rectangles[indexOfMergedArray].getPosition().x, windHeight - rectangles[indexOfMergedArray].getSize().y));
+            render(window, rectangles, speed);
+            rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 255, 255));
+            indexOfSubArrayOne++;
+        }
+        else {
+            rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 0, 0));
+            rectangles[indexOfMergedArray].setSize(sf::Vector2f(rightArray[indexOfSubArrayTwo].getSize()));
+            rectangles[indexOfMergedArray].setPosition(sf::Vector2f(rectangles[indexOfMergedArray].getPosition().x, windHeight - rectangles[indexOfMergedArray].getSize().y));
+            render(window, rectangles, speed);
+            rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 255, 255));
+            indexOfSubArrayTwo++;
+        }
+        indexOfMergedArray++;
+    }
+    // Copy the remaining elements of
+    // left[], if there are any
+    while (indexOfSubArrayOne < subArrayOne) {
+        rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 0, 0));
+        rectangles[indexOfMergedArray].setSize(sf::Vector2f(leftArray[indexOfSubArrayOne].getSize()));
+        rectangles[indexOfMergedArray].setPosition(sf::Vector2f(rectangles[indexOfMergedArray].getPosition().x, windHeight - rectangles[indexOfMergedArray].getSize().y));
+        render(window, rectangles, speed);
+        rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 255, 255));
+        indexOfSubArrayOne++;
+        indexOfMergedArray++;
+    }
+    // Copy the remaining elements of
+    // right[], if there are any
+    while (indexOfSubArrayTwo < subArrayTwo) {
+        rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 0, 0));
+        rectangles[indexOfMergedArray].setSize(sf::Vector2f(rightArray[indexOfSubArrayTwo].getSize()));
+        rectangles[indexOfMergedArray].setPosition(sf::Vector2f(rectangles[indexOfMergedArray].getPosition().x, windHeight - rectangles[indexOfMergedArray].getSize().y));
+        render(window, rectangles, speed);
+        rectangles[indexOfMergedArray].setFillColor(sf::Color(255, 255, 255));
+        indexOfSubArrayTwo++;
+        indexOfMergedArray++;
+    }
+    delete[] leftArray;
+    delete[] rightArray;
+}
+
+// begin is for left index and end is
+// right index of the sub-array
+// of arr to be sorted */
+void mergeSort(std::vector<sf::RectangleShape> &rectangles, int const begin, int const end, sf::RenderWindow *window, int speed){
+    if (begin >= end)
+        return; // Returns recursively
+
+    auto mid = begin + (end - begin) / 2;
+    mergeSort(rectangles, begin, mid, window, speed);
+    mergeSort(rectangles, mid + 1, end, window, speed);
+    merge(rectangles, begin, mid, end, window, speed);
+}
+
 int main()
 {
     bool isSorted = false;
@@ -163,7 +250,7 @@ int main()
         }
         if(!isSorted){
             std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\n"
-                         "3. Selection Sort\n4. Insertion Sort\nEnter the number > ";
+                         "3. Selection Sort\n4. Insertion Sort\n5. Merge Sort\nEnter the number > ";
             std::cin >> answer;
             switch(answer){
                 case 1:
@@ -177,6 +264,9 @@ int main()
                     break;
                 case 4:
                     insertionSort(rectangles, &window, 1000);
+                    break;
+                case 5:
+                    mergeSort(rectangles, 0, rectangles.size() - 1, &window, 1000);
                     break;
             }
             isSorted = true;
@@ -196,6 +286,5 @@ int main()
             }
         }
     }
-
     return 0;
 }
