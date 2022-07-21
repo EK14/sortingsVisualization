@@ -10,7 +10,7 @@
 
 - [X] Selection Sort
 
-<img src="https://user-images.githubusercontent.com/75206974/179919298-c26b4563-990a-4b25-8c09-c65d555119ed.gif" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/75206974/180295115-6460aaf6-231d-425e-bb2b-124853645218.gif" width="800" height="400">
 
 - [X] Insertion Sort
 
