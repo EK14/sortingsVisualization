@@ -22,7 +22,7 @@
 
 - [X] Heap Sort
 
-<img src="https://user-images.githubusercontent.com/75206974/179989528-0fa2457c-f518-4b22-9600-4daf33cc8b22.gif" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/75206974/180313539-085e8f96-f67d-48c0-9bc3-a2ad2698978b.gif" width="800" height="400">
 
 - [ ] Radix Sort
 
