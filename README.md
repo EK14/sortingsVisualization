@@ -2,7 +2,7 @@
 
 - [X] Bubble Sort
 
-<img src="https://user-images.githubusercontent.com/75206974/179917931-661e2ce8-9275-40bc-80b1-a58775d4604e.gif" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/75206974/180293369-21fb5652-4de4-4085-8ec5-663f7c8db70d.gif" width="800" height="400">
 
 - [X] Quick Sort
 
