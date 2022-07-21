@@ -22,8 +22,14 @@ void swap(int ind1, int ind2, std::vector<sf::RectangleShape> &rectangles, sf::R
 }
 
 void initVisualization(std::vector<sf::RectangleShape> &rectangles){
+    std::vector<bool> size(200, false);
+    int choice = 1;
     for(int i = 0; i < windWidth / 10; ++i){
-        rectangles[i].setSize(sf::Vector2f(8, rand() % (windHeight - 30)));
+        while(size[choice]){
+            choice = rand() % 200;
+        }
+        size[choice] = true;
+        rectangles[i].setSize(sf::Vector2f(8, choice*4));
         rectangles[i].setFillColor(sf::Color(255, 255, 255));
         rectangles[i].setPosition(sf::Vector2f(10 * i, windHeight - rectangles[i].getSize().y));
         rectangles[i].setOutlineThickness(1);
@@ -317,7 +323,8 @@ int main()
         if(!isSorted){
             std::cout << "\nWhat sorting algorithm do you want to use?\n1. Bubble Sort\n2. Quick Sort\n"
                          "3. Selection Sort\n4. Insertion Sort\n5. Merge Sort\n6. Heap Sort\nEnter the number > ";
-            std::cin >> answer;
+//            std::cin >> answer;
+            answer = 6;
             switch(answer){
                 case 1:
                     bubbleSort(rectangles, &window, 100);
