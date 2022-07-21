@@ -6,7 +6,7 @@
 
 - [X] Quick Sort
 
-<img src="https://user-images.githubusercontent.com/75206974/179918000-19215308-e817-43ba-86eb-fb7ca8a23f0f.gif" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/75206974/180294439-44cc65b0-494d-4acc-a76a-0f92c5d0c474.gif" width="800" height="400">
 
 - [X] Selection Sort
 
