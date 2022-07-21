@@ -18,7 +18,7 @@
 
 - [X] Merge Sort
 
-<img src="https://user-images.githubusercontent.com/75206974/179981225-3203aaaf-2563-45c4-be72-61dbc0f19f74.gif" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/75206974/180312801-2e8a8784-ca29-4c8e-9924-6774a48199a2.gif" width="800" height="400">
 
 - [X] Heap Sort
 
