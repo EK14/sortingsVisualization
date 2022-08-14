@@ -23,9 +23,3 @@
 - [X] Heap Sort
 
 <img src="https://user-images.githubusercontent.com/75206974/180313539-085e8f96-f67d-48c0-9bc3-a2ad2698978b.gif" width="800" height="400">
-
-- [ ] Radix Sort
-
-- [ ] Shell Sort
-
-- [ ] Coctail Shaker Sort
